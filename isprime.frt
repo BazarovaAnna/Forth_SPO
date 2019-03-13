@@ -18,8 +18,21 @@
 	
 ;
 
-: printprime
+( @ - fetch value from mem) ( addr-value)
+( ! - store value by addr) ( val addr -)
+( c@ - read one byte starting at addr) ( addr - char)
+( c! - store one byte by addr) ( ch addr -)
+: allotprime
 	dup isprime
+	1 allot
+	dup
+	rot rot
+	c!
+;
+
+: printprime
+	dup allotprime
+	c@
 	if . ."  is prime" cr else . ."  is not prime" cr then 
 ;
 
@@ -30,3 +43,4 @@
 1 printprime
 3 printprime
 24 printprime
+
